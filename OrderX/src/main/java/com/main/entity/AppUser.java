@@ -1,10 +1,6 @@
-/**
- * 
- */
 package com.main.entity;
 
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -13,91 +9,95 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.Table;
 
-
-/**
- * 
- */
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "user_type")
+@Table(name = "app_user")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class AppUser {
-	
-	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long appUser;
 
-	@Column(unique = true, nullable = false)
-	private String firstName;
-	
-	@Column(unique = true, nullable = false)
-	private String lastName;
-	
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long appUserId;
+
+    @Column(unique = true, nullable = false)
+    private String firstName;
+
+    @Column(unique = true, nullable = true)
+    private String lastName;
+
     @Column(unique = true, nullable = false)
     private String email;
 
     @Column(nullable = false)
     private String password;
 
-    private String name;
     private String phone;
 
     @Enumerated(EnumType.STRING)
     private Role role;
 
-	public Long getAppUser() {
-		return appUser;
+    public String getFirstName() {
+        return firstName;
+    }
+
+    /**
+	 * @return the appUserId
+	 */
+	public Long getAppUserId() {
+		return appUserId;
 	}
 
-	public void setAppUser(Long appUser) {
-		this.appUser = appUser;
+	/**
+	 * @param appUserId the appUserId to set
+	 */
+	public void setAppUserId(Long appUserId) {
+		this.appUserId = appUserId;
 	}
 
-	public String getEmail() {
-		return email;
-	}
+	public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public String getLastName() {
+        return lastName;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public String getPhone() {
-		return phone;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
+    public String getPhone() {
+        return phone;
+    }
 
-	public Role getRole() {
-		return role;
-	}
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
-	public void setRole(Role role) {
-		this.role = role;
-	}
+    public Role getRole() {
+        return role;
+    }
 
-	@Override
-	public String toString() {
-		return "AppUser [appUser=" + appUser + ", email=" + email + ", password=" + password + ", name=" + name
-				+ ", phone=" + phone + ", role=" + role + "]";
-	}
+    public void setRole(Role role) {
+        this.role = role;
+    }
 
 }
 

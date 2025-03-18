@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.ListIterator;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,7 +34,7 @@ public class EmployeeController {
 	 * @return
 	 */
 	@GetMapping("/get-all")
-	public List<EmployeeDto> getAllEmployees(){
+	public ResponseEntity<List<EmployeeDto>> getAllEmployees(){
 		List<Employee> employeeList = employeeService.getAllEmployees();
 		List<EmployeeDto> employeeDtoList = new ArrayList<EmployeeDto>();
 		
@@ -45,7 +46,7 @@ public class EmployeeController {
 			employeeDto.setJobTitle(employee.getJobTitle());
 			employeeDtoList.add(employeeDto);
 		}
-		return employeeDtoList;
+		return ResponseEntity.ok(employeeDtoList);
 	}
 	
 }

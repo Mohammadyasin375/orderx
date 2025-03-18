@@ -20,6 +20,6 @@ public class Inventory {
     @JoinColumn(name = "inventoryId")
     private MenuItem menuItem;
 
-    private Integer stockQuantity;
+    private Integer stockQuantity1;
     
 }
